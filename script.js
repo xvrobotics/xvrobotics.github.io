@@ -23,18 +23,5 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-document.getElementById('year').textContent = new Date().getFullYear();
-
-const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-const sections = [...document.querySelectorAll('main section[id]')];
-
-window.addEventListener('scroll', () => {
-  const y = window.scrollY + 140;
-  let current = '';
-  sections.forEach(section => {
-    if (y >= section.offsetTop) current = section.id;
-  });
-  links.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-  });
-}, { passive: true });
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
